@@ -1,0 +1,159 @@
+/* App.css */
+
+/* Base styles */
+body {
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  background: #1a1a1a;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.GameContainer {
+  text-align: center;
+  padding: 2rem;
+  background: #2a2a2a;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8em;
+  color: #4CAF50;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+/* Board styling */
+.Board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 400px;
+  background: #333;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #4CAF50;
+}
+
+/* Tile styling with animations */
+.Tile {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 8px;
+  background: #444;
+  color: white;
+  font-size: 2.5em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.Tile:hover {
+  background: #4CAF50;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+}
+
+.Tile:active {
+  transform: scale(0.95);
+}
+
+/* X and O different colors */
+.Tile[value="X"] {
+  color: #FF4081;
+  text-shadow: 0 0 15px rgba(255, 64, 129, 0.4);
+}
+
+.Tile[value="O"] {
+  color: #2196F3;
+  text-shadow: 0 0 15px rgba(33, 150, 243, 0.4);
+}
+
+/* Winning tiles highlight */
+.Tile.winning {
+  background: #4CAF50 !important;
+  color: white !important;
+  animation: winningTile 1s ease infinite;
+}
+
+@keyframes winningTile {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Reset button styling */
+.ResetButton {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.ResetButton:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.ResetButton:active {
+  transform: translateY(0);
+}
+
+/* Game state messages */
+.GameContainer h2 {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .GameContainer {
+    width: 90%;
+    padding: 1rem;
+  }
+  
+  .Tile {
+    font-size: 2em;
+  }
+}
+
+/* Glow effect for current player */
+.current-player {
+  position: relative;
+}
+
+.current-player::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 12px;
+  animation: glow 1.5s ease-in-out infinite;
+  border: 2px solid transparent;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px #4CAF50; }
+  50% { box-shadow: 0 0 20px #4CAF50; }
+  100% { box-shadow: 0 0 5px #4CAF50; }
+}
